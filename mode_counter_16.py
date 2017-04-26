@@ -1,0 +1,1 @@
+from b__mode_counter import csv_mode_preprocessingOUTPUT_FILE = '/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/' \              'raw_data_concat_all/20170427_16_merged_from_8_sequences.csv'x_ordered_dict = csv_mode_preprocessing(OUTPUT_FILE=OUTPUT_FILE)
