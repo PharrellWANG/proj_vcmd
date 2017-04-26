@@ -1,0 +1,1 @@
+Orders:order for folders of data:    1. raw_data    2. raw_data_no_comma_now    3. no duplication    4. 3536    5. concatenate all    6. train&test dataorder for program execution:    1. comma remover    2. duplication remover    3. 37 and 38 change to 35 and 36    4. merge all to one csv    5. generate training data and different testing data
