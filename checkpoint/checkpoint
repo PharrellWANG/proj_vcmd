@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/checkpoint/1_3_1_model.ckpt"
+all_model_checkpoint_paths: "/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/checkpoint/1_3_1_model.ckpt"
