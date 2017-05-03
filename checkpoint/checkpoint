@@ -1,2 +1,0 @@
-model_checkpoint_path: "/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/checkpoint/md_gpu_no_test_6_BN_conv_dropout_model_restore_from_ckpt.ckpt"
-all_model_checkpoint_paths: "/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/checkpoint/md_gpu_no_test_6_BN_conv_dropout_model_restore_from_ckpt.ckpt"
