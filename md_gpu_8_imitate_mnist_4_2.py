@@ -161,9 +161,9 @@ def training_step(i, update_test_data, update_train_data, loop_start_stamp):
     batch_X, batch_Y = mode_decision.train.next_batch(100)
 
     # learning rate decay
-    max_learning_rate = 0.02
+    max_learning_rate = 0.05
     min_learning_rate = 0.0001
-    decay_speed = 1600
+    decay_speed = 10
     learning_rate = min_learning_rate + (max_learning_rate - min_learning_rate) * math.exp(-i/decay_speed)
 
     # compute training values for visualisation
@@ -468,7 +468,7 @@ def training_step(i, update_test_data, update_train_data, loop_start_stamp):
 # to save the animation as a movie, add save_movie=True as an argument to datavis.animate
 # to disable the visualisation use the following line instead of the datavis.animate line
 loop_start = datetime.now()
-for i in range(10000000+1): training_step(i, i % 1000 == 0, i % 10 == 0, loop_start_stamp=loop_start)
+for i in range(10000000+1): training_step(i, i % 10000 == 0, i % 20 == 0, loop_start_stamp=loop_start)
 
 # print("max test accuracy: " + str(datavis.get_max_test_accuracy()))
 
