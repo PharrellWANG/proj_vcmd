@@ -29,6 +29,7 @@ tf.set_random_seed(0)
 # number of percentile slices for histogram visualisations
 HISTOGRAM_BUCKETS = 7
 
+
 # X: tensor of shape [100+, 28, 28, 1] containing a batch of images (float32)
 # Y: tensor of shape [100+, 10] containing recognised digits (one-hot vectors)
 # Y_: tensor of shape [100+, 10] containing correct digit labels (one-hot vectors)
