@@ -72,9 +72,9 @@ def training_step(i, update_test_data, update_train_data, loop_start_stamp):
     batch_X, batch_Y = mode_decision.train.next_batch(100)
 
     # learning rate decay
-    max_learning_rate = 0.01
-    min_learning_rate = 0.00001
-    decay_speed = 5
+    max_learning_rate = 0.05
+    min_learning_rate = 0.01
+    decay_speed = 1500
     learning_rate = min_learning_rate + (max_learning_rate - min_learning_rate) * math.exp(-i / decay_speed)
 
     if update_train_data:
@@ -461,8 +461,8 @@ with tf.device("/gpu:0"):
     dense_activations = tf.reduce_max(Y4r, [0])
 
     # training step, the learning rate is a placeholder
-    global_step = tf.Variable(0, name='global_step', trainable=False)
-    train_step = tf.train.AdamOptimizer(lr).minimize(cross_entropy, global_step=global_step)
+    # global_step = tf.Variable(0, name='global_step', trainable=False)
+    train_step = tf.train.AdamOptimizer(lr).minimize(cross_entropy)
 
     # init
     init = tf.global_variables_initializer()
