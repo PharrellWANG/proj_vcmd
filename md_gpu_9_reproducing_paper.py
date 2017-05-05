@@ -82,10 +82,10 @@ def training_step(i, update_test_data, update_train_data, loop_start_stamp):
         print(str(i) + ": accuracy:" + str(a) + " loss: " + str(c) + " (lr:" + str(learning_rate) + ")")
 
     if update_test_data:
-        # save_path = saver.save(sess,
-        #                        "/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_9/"
-        #                        "md_9.ckpt")
-        # print("Model saved in file: %s" % save_path)
+        save_path = saver.save(sess,
+                               "/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_9/"
+                               "md_9.ckpt")
+        print("Model saved in file: %s" % save_path)
 
         stamp = datetime.now()
 
@@ -467,18 +467,14 @@ with tf.device("/gpu:0"):
     # init
     init = tf.global_variables_initializer()
 
-    sv = tf.train.Supervisor(logdir="/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_9")
+saver = tf.train.Saver()
+# define the session
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+# run init operation
+sess.run(init)
+print("======------------>>>>>>>    " + str(mode_decision.train.images.shape[0]))
+print("initialized successfully! -------------------------------- ")
+loop_start = datetime.now()
 
-
-with sv.managed_session() as sess:
-
-    sess.run(init)
-
-    print("initialized successfully! -------------------------------- ")
-
-    loop_start = datetime.now()
-
-    for i in range(10000000 + 1):
-        if sv.should_stop():
-            break
-        training_step(i, i % 10000 == 0, i % 20 == 0, loop_start_stamp=loop_start)
+for i in range(10000000 + 1):
+    training_step(i, i % 10000 == 0, i % 20 == 0, loop_start_stamp=loop_start)
