@@ -150,7 +150,7 @@ with tf.Graph().as_default():
         summary = tf.summary.merge_all()
 
         # Add the variable initializer Op.
-        init = tf.global_variables_initializer()
+        # init = tf.global_variables_initializer()
 
         # Create a saver for writing training checkpoints.
         saver = tf.train.Saver()
@@ -159,13 +159,18 @@ with tf.Graph().as_default():
         config = tf.ConfigProto(allow_soft_placement=True)
         sess = tf.Session(config=config)
 
+        checkpoint_file = '/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_mnist42/model_mnist.ckpt-9900'
+
+        saver.restore(sess, checkpoint_file)
+        print("Model restored.")
+
         # Instantiate a SummaryWriter to output summaries and the Graph.
         summary_writer = tf.summary.FileWriter('/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_mnist42', sess.graph)
 
         # And then after everything is built:
 
         # Run the Op to initialize the variables.
-        sess.run(init)
+        # sess.run(init)
 
 
 # You can call this function in a loop to train the model, 100 images at a time
@@ -175,9 +180,9 @@ def training_step(i, update_test_data, update_train_data):
     batch_X, batch_Y = mnist.train.next_batch(100)
 
     # learning rate decay
-    max_learning_rate = 0.02
-    min_learning_rate = 0.0001
-    decay_speed = 1000
+    max_learning_rate = 0.00009
+    min_learning_rate = 0.00005
+    decay_speed = 500
     learning_rate = min_learning_rate + (max_learning_rate - min_learning_rate) * math.exp(-i/decay_speed)
 
     # compute training values for visualisation
@@ -190,8 +195,8 @@ def training_step(i, update_test_data, update_train_data):
 
     # compute test values for visualisation
     if update_test_data:
-        checkpoint_file = '/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_mnist42/model_mnist.ckpt'
-        saver.save(sess, checkpoint_file, global_step=i)
+        checkpoint_file_new = '/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_mnist42/model_mnist.ckpt'
+        saver.save(sess, checkpoint_file_new, global_step=i)
         a, c = sess.run([accuracy, cross_entropy], {X: mnist.test.images, Y_: mnist.test.labels, tst: True, pkeep: 1.0, pkeep_conv: 1.0})
         print(str(i) + ": ********* epoch " + str(i*100//mnist.train.images.shape[0]+1) + " ********* test accuracy:" + str(a) + " test loss: " + str(c))
         # datavis.append_test_curves_data(i, a, c)
