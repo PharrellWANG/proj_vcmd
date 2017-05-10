@@ -177,7 +177,7 @@ with tf.Graph().as_default():
 def training_step(i, update_test_data, update_train_data):
 
     # training on batches of 100 images with 100 labels
-    batch_X, batch_Y = mnist.train.next_batch(100)
+    batch_X, batch_Y = mnist.train.next_batch(500)
 
     # learning rate decay
     max_learning_rate = 0.00009

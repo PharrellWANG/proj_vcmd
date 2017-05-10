@@ -205,6 +205,9 @@ def training_step(i, update_test_data, update_train_data):
 
 # to save the animation as a movie, add save_movie=True as an argument to datavis.animate
 # to disable the visualisation use the following line instead of the datavis.animate line
+if tf.gfile.Exists('/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_mnist42'):
+    tf.gfile.DeleteRecursively('/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_mnist42')
+tf.gfile.MakeDirs('/Users/Pharrell_WANG/PycharmProjects/proj_vcmd/ckpt_mnist42')
 for i in range(10000): training_step(i, i % 100 == 0, i % 20 == 0)
 
 # print("max test accuracy: " + str(datavis.get_max_test_accuracy()))
